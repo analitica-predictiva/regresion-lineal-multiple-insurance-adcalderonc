@@ -47,7 +47,7 @@ def pregunta_02():
 
     # Divida los datos de entrenamiento y prueba. La semilla del generador de números
     # aleatorios es 12345. Use 300 patrones para la muestra de prueba.
-    (X_train, X_test, y_train, y_test,) = train_test_split(
+    (X_train, X_test, y_train, y_test,) = train_test_split( 
         X,
         y,
         test_size=300,
@@ -79,7 +79,7 @@ def pregunta_03():
     from sklearn.model_selection import GridSearchCV
     from sklearn.pipeline import Pipeline
     from sklearn.preprocessing import OneHotEncoder
-    import numpy as 
+    import numpy as np
     
     pipeline = Pipeline(
         steps=[
@@ -88,7 +88,7 @@ def pregunta_03():
             # las variables.
             (
                 "column_transfomer",
-                 make_column_transformer(
+                make_column_transformer(
                     (
                         OneHotEncoder(),
                         make_column_selector(dtype_include = object),
@@ -100,18 +100,18 @@ def pregunta_03():
             # características más importantes. Utilice la función f_regression.
             (
                 "selectKBest",
-                 SelectKBest(score_func = f_regression),
+                SelectKBest(score_func = f_regression),
             ),
             # Paso 3: Construya un modelo de regresión lineal.
             (
                 "linealRegression",
-                 LinearRegression(),
+                LinearRegression(),
             ),
         ],
     )
 
     # Cargua de las variables.
-    X_train, X_test, y_train, y_test = pregunta_02()
+    X_train, _, y_train, _ = pregunta_02()
 
     # Defina un diccionario de parámetros para el GridSearchCV. Se deben
     # considerar valores desde 1 hasta 11 regresores para el modelo
